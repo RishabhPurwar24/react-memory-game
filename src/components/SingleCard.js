@@ -1,11 +1,21 @@
+import { useState } from "react";
 import "./SingleCard.css";
 
-function SingleCard({ src }) {
+function SingleCard({ card, handleChoice, flipped }) {
+  const clickHandler = () => {
+    handleChoice(card);
+  };
   return (
     <div className="card">
-      <div>
-        <img className="front" src={src} alt="card front" />
-        <img className="back" src="/img/cover.png" alt="card back" />
+      <div className={flipped ? "flipped" : ""}>
+        <img className="front" src={card.src} alt="card front" />
+
+        <img
+          className="back"
+          src="/img/cover.png"
+          onClick={clickHandler}
+          alt="card back"
+        />
       </div>
     </div>
   );

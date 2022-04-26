@@ -1,10 +1,13 @@
 import { useState } from "react";
 import "./SingleCard.css";
 
-function SingleCard({ card, handleChoice, flipped }) {
+function SingleCard({ card, handleChoice, flipped, disabled }) {
   const clickHandler = () => {
-    handleChoice(card);
+    if (!disabled) {
+      handleChoice(card);
+    }
   };
+
   return (
     <div className="card">
       <div className={flipped ? "flipped" : ""}>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./SingleCard.css";
 
-function SingleCard({ card, handleChoice, flipped, disabled }) {
+function SingleCard({ card, handleChoice, flipped, disabled, turns }) {
   const clickHandler = () => {
     if (!disabled) {
       handleChoice(card);

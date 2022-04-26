@@ -26,6 +26,8 @@ function App() {
 
     setCards(shuffledCards);
     setTurns(0);
+    setChoiceOne(null);
+    setChoiceTwo(null);
   };
 
   //handle a choice
@@ -33,13 +35,18 @@ function App() {
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
   };
 
-  // reset choices $ increase turn
+  // reset choices & increase turn
   const resetTurn = () => {
     setChoiceOne(null);
     setChoiceTwo(null);
     setTurns((prevTurns) => prevTurns + 1);
     setDisabled(false);
   };
+
+  //start new game automatically
+  useEffect(() => {
+    shuffleCardsHandler();
+  }, []);
 
   //compare 2 selected cards
   useEffect(() => {
@@ -58,7 +65,6 @@ function App() {
         });
         resetTurn();
       } else {
-        console.log("both cards donot match");
         setTimeout(() => resetTurn(), 1000);
       }
     }
@@ -77,9 +83,11 @@ function App() {
             handleChoice={handleChoice}
             flipped={card === choiceOne || card === choiceTwo || card.matched}
             disabled={disabled}
+            turns={turns}
           />
         ))}
       </div>
+      <p>Turns: {turns} </p>
     </div>
   );
 }
